@@ -7,7 +7,7 @@
 | [App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml) | `appPayment` | 待定 | [ ] |
 | [JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml) | `jsapiPayment` | [MyNewGH](https://github.com/MyNewGH) | [ ] |
 | [合单H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_2.shtml) | `combineH5Payment` | [zzs](https://github.com/zhangzs000) | [ ] |
-| [合单Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_5.shtml) | `combineNativePayment` | 待定 | [ ] |
+| [合单Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_5.shtml) | `combineNativePayment` | 水镜 | [ ] |
 | [合单App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_1.shtml) | `combineAppPayment` | 待定 | [ ] |
 | [合单JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_3.shtml) | `combineJsapiPayment` | 待定 | [ ] |
 
