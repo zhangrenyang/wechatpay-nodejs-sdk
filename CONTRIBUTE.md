@@ -22,7 +22,7 @@
 ## 账单和资金管理
 | API名称 | 函数名 | 贡献者名称 | 完成情况 |
 |---------|--------|------------|----------|
-| [申请交易账单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_6.shtml) | `requestTradeBill` | 待定 | [ ] |
+| [申请交易账单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_6.shtml) | `requestTradeBill` | [Licodeao](https://github.com/Licodeao) | [ ] |
 | [申请资金账单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_7.shtml) | `requestFundFlowBill` | 待定 | [ ] |
 | [下载账单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_8.shtml) | `downloadBillingStatement` | 待定 | [ ] |
 
