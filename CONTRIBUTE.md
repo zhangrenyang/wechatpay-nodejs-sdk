@@ -31,7 +31,7 @@
 |---------|--------|------------|----------|
 | [申请退款](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_9.shtml) | `requestRefund` | [flyingmyangel](https://github.com/flyingmyangel) | [ ] |
 | [查询退款](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_10.shtml) | `queryRefund` | 待定 | [ ] |
-| [分账](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_1.shtml) | `createProfitSharingOrder` | 待定 | [ ] |
+| [分账](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_1.shtml) | `createProfitSharingOrder` | [yuyansun](https://github.com/Irenia111) | [ ] |
 
 ## 安全和验证
 
