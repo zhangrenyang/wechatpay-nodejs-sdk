@@ -90,5 +90,9 @@ class WechatPay {
     const url = `/v3/pay/transactions/out-trade-no/${out_trade_no}/close`;
     await this.request('POST', url, { mchid: this.mchid });
   }
+  async combineH5Payment(params) {
+    const url = `/v3/combine-transactions/h5`;
+    return await this.request('POST', url, params);
+  }
 }
 module.exports = WechatPay;
