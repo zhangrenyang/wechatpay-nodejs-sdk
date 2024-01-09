@@ -45,4 +45,4 @@
 
 | API名称                                                                                                                           | 函数名               | 贡献者名称 | 完成情况 |
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ---------- | -------- |
-| [微信提现到零钱](https://pay.weixin.qq.com/docs/merchant/apis/batch-transfer-to-balance/transfer-batch/initiate-batch-transfer.html) | `transferToWallet` | 待定       | [ ]      |
+| [微信提现到零钱](https://pay.weixin.qq.com/docs/merchant/apis/batch-transfer-to-balance/transfer-batch/initiate-batch-transfer.html) | `transferToWallet` | 待定       | [zzs](https://github.com/zhangzs000)      |
