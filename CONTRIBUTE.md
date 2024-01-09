@@ -39,7 +39,7 @@
 | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------- | -------- |
 | [解密信息](https://pay.weixin.qq.com/docs/merchant/development/interface-rules/sensitive-data-encryption.html)           | [decrypt](docs/decrypt.md)                                 | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
 | [签名验证](https://pay.weixin.qq.com/docs/merchant/development/interface-rules/signature-verification.html)              | [verifySignature](docs/verifySignature.md)                 | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
-| [根据序列号获取公钥](https://pay.weixin.qq.com/docs/merchant/apis/platform-certificate/api-v3-get-certificates/get.html) | [fetchWechatPayPublicKey](docs/fetchWechatPayPublicKey.md) | [zhangrenyang](https://github.com/zhangrenyang)                                         | [ ]      |
+| [根据序列号获取公钥](https://pay.weixin.qq.com/docs/merchant/apis/platform-certificate/api-v3-get-certificates/get.html) | [fetchWechatPayPublicKey](docs/fetchWechatPayPublicKey.md) | [zhangrenyang](https://github.com/zhangrenyang)                                         | [√]      |
 
 ## 其他功能
 
