@@ -3,7 +3,7 @@
 |---------|--------|------------|----------|
 | [H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_3_1.shtml) | `h5Payment` | [vitalboyzf](https://github.com/vitalboyzf) | [ ] |
 | [Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_4_1.shtml) | [nativePayment](docs/nativePayment.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√] |
-| [App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml) | `appPayment` | 待定 | [ ] |
+| [App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml) | `appPayment` | [dpgirl](https://github.com/dpgirl) | [ ] |
 | [JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml) | `jsapiPayment` | [MyNewGH](https://github.com/MyNewGH) | [ ] |
 | [合单H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_2.shtml) | `combineH5Payment` | [zzs](https://github.com/zhangzs000) | [ ] | 
 | [合单Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_5.shtml) | `combineNativePayment` | [水镜](https://github.com/2119855865/) | [ ] |
