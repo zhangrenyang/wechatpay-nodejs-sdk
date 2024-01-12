@@ -1,7 +1,7 @@
 ## 支付方式
 | API名称 | 函数名 | 贡献者名称 | 完成情况 |
 |---------|--------|------------|----------|
-| [H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_3_1.shtml) | `h5Payment` | [vitalboyzf](https://github.com/vitalboyzf) | [ ] |
+| [H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_3_1.shtml) | [h5Payment](docs/h5Payment.md) | [vitalboyzf](https://github.com/vitalboyzf) | [√] |
 | [Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_4_1.shtml) | [nativePayment](docs/nativePayment.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√] |
 | [App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml) | `appPayment` | [dpgirl](https://github.com/dpgirl) | [ ] |
 | [JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml) | `jsapiPayment` | [MyNewGH](https://github.com/MyNewGH) | [ ] |

@@ -46,6 +46,15 @@ class WechatPay {
     };
     return await this.request('POST', url, requestParams);
   }
+  async h5Payment(params) {
+    const url = '/v3/pay/transactions/h5';
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params
+    };
+    return await this.request('POST', url, requestParams);
+  }
   async fetchWechatPayPublicKey(serial) {
     const publicKey = CACHED_CERTIFICATES[serial];
     if (publicKey) {
