@@ -17,7 +17,7 @@
 | [查询订单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_2.shtml)  | [queryOrder](docs/queryOrder.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
 | [关闭订单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_3.shtml)  | [closeOrder](docs/closeOrder.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
 | [查询合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_11.shtml) | `queryCombinedOrder`        | [donglize](https://github.com/donglize521521)                                       | [ ]      |
-| [关闭合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_12.shtml) | `closeCombinedOrder`        | [fengchunsun]                                         | [ ]      |
+| [关闭合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_12.shtml) | `closeCombinedOrder`        | [fengchunsun](https://github.com/fengchunsun2016/wechatpay-nodejs-sdk)                                         | [ ]      |
 
 ## 账单和资金管理
 | API名称 | 函数名 | 贡献者名称 | 完成情况 |
