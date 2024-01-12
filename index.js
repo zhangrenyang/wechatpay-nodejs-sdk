@@ -52,6 +52,15 @@ class WechatPay {
     };
     return await this.request('POST', url, requestParams);
   }
+  async h5Payment(params) {
+    const url = '/v3/pay/transactions/h5';
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params
+    };
+    return await this.request('POST', url, requestParams);
+  }
   async fetchWechatPayPublicKey(serial) {
     const publicKey = CACHED_CERTIFICATES[serial];
     if (publicKey) {
@@ -106,6 +115,11 @@ class WechatPay {
     delete params.wx_serial_no;
 
     return await this.request('POST', url, params, {'Wechatpay-Serial': serial_no || this.serial_no});
+
+  async requestFundFlowBill(params){
+    const { bill_date } = params;
+    const url = `/v3/bill/fundflowbill?bill_date=${billDate}`;
+    return await this.request('GET', url);
   }
 }
 module.exports = WechatPay;
