@@ -1,7 +1,7 @@
 ## 支付方式
 | API名称 | 函数名 | 贡献者名称 | 完成情况 |
 |---------|--------|------------|----------|
-| [H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_3_1.shtml) | `h5Payment` | [vitalboyzf](https://github.com/vitalboyzf) | [ ] |
+| [H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_3_1.shtml) | [h5Payment](docs/h5Payment.md) | [vitalboyzf](https://github.com/vitalboyzf) | [√] |
 | [Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_4_1.shtml) | [nativePayment](docs/nativePayment.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√] |
 | [App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml) | `appPayment` | [dpgirl](https://github.com/dpgirl) | [ ] |
 | [JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml) | `jsapiPayment` | [MyNewGH](https://github.com/MyNewGH) | [ ] |
@@ -17,7 +17,7 @@
 | [查询订单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_2.shtml)  | [queryOrder](docs/queryOrder.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
 | [关闭订单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_3.shtml)  | [closeOrder](docs/closeOrder.md) | [zhangrenyang](https://github.com/zhangrenyang) | [√]     |
 | [查询合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_11.shtml) | `queryCombinedOrder`        | [donglize](https://github.com/donglize521521)                                       | [ ]      |
-| [关闭合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_12.shtml) | `closeCombinedOrder`        | [fengchunsun]                                         | [ ]      |
+| [关闭合单](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_12.shtml) | `closeCombinedOrder`        | [fengchunsun](https://github.com/fengchunsun2016/wechatpay-nodejs-sdk)                                         | [ ]      |
 
 ## 账单和资金管理
 | API名称 | 函数名 | 贡献者名称 | 完成情况 |
