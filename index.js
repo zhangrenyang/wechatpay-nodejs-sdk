@@ -103,5 +103,11 @@ class WechatPay {
     const url = `/v3/combine-transactions/h5`;
     return await this.request('POST', url, params);
   }
+  // 申请资金账单
+  async requestFundFlowBill(params){
+    const { bill_date } = params;
+    const url = `/v3/bill/fundflowbill?bill_date=${billDate}`;
+    return await this.request('GET', url);
+  }
 }
 module.exports = WechatPay;
