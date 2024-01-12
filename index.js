@@ -1,10 +1,10 @@
-const { Certificate } = require('@fidm/x509');
-const axios = require('axios');
-const crypto = require('crypto');
-const DEFAULT_AUTH_TYPE = 'WECHATPAY2-SHA256-RSA2048'
+const { Certificate } = require("@fidm/x509");
+const axios = require("axios");
+const crypto = require("crypto");
+const DEFAULT_AUTH_TYPE = "WECHATPAY2-SHA256-RSA2048";
 const weixinPayAPI = axios.create({
-  baseURL: 'https://api.mch.weixin.qq.com',
-  headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+  baseURL: "https://api.mch.weixin.qq.com",
+  headers: { Accept: "application/json", "Content-Type": "application/json" },
 });
 function getSerialNo(publicKey) {
   return Certificate.fromPEM(publicKey).serialNumber;
@@ -27,35 +27,41 @@ class WechatPay {
     const headers = {
       Authorization: `${this.authType} mchid="${this.mchid}",nonce_str="${nonce_str}",timestamp="${timestamp}",serial_no="${this.serial_no}",signature="${signature}"`,
     };
-    const responseData = await weixinPayAPI.request({ method, url, data: body, headers });
+    const responseData = await weixinPayAPI.request({
+      method,
+      url,
+      data: body,
+      headers,
+    });
     return responseData.data;
   }
   sign(method, url, nonce_str, timestamp, body) {
     let data = `${method}\n${url}\n${timestamp}\n${nonce_str}\n`;
-    data += (method !== 'GET' && body) ? `${JSON.stringify(body)}\n` : '\n';
-    const sign = crypto.createSign('RSA-SHA256');
+    data += method !== "GET" && body ? `${JSON.stringify(body)}\n` : "\n";
+    const sign = crypto.createSign("RSA-SHA256");
     sign.update(data);
-    return sign.sign(this.privateKey, 'base64');
+    return sign.sign(this.privateKey, "base64");
   }
   async nativePayment(params) {
-    const url = '/v3/pay/transactions/native';
+    const url = "/v3/pay/transactions/native";
     const requestParams = {
       appid: this.appid,
       mchid: this.mchid,
-      ...params
+      ...params,
     };
-    return await this.request('POST', url, requestParams);
+    return await this.request("POST", url, requestParams);
   }
   async fetchWechatPayPublicKey(serial) {
     const publicKey = CACHED_CERTIFICATES[serial];
     if (publicKey) {
       return publicKey;
     }
-    const url = '/v3/certificates';
-    const data = await this.request('GET', url);
-    data.data.forEach(item => {
+    const url = "/v3/certificates";
+    const data = await this.request("GET", url);
+    data.data.forEach((item) => {
       const certificate = this.decrypt(item.encrypt_certificate);
-      CACHED_CERTIFICATES[item.serial_no] = Certificate.fromPEM(certificate).publicKey.toPEM();
+      CACHED_CERTIFICATES[item.serial_no] =
+        Certificate.fromPEM(certificate).publicKey.toPEM();
     });
     return CACHED_CERTIFICATES[serial];
   }
@@ -64,31 +70,51 @@ class WechatPay {
     let publicKey = await this.fetchWechatPayPublicKey(serial);
     const bodyStr = JSON.stringify(body);
     const data = `${timestamp}\n${nonce}\n${bodyStr}\n`;
-    const verify = crypto.createVerify('RSA-SHA256');
+    const verify = crypto.createVerify("RSA-SHA256");
     verify.update(data);
-    return verify.verify(publicKey, signature, 'base64');
+    return verify.verify(publicKey, signature, "base64");
   }
   decrypt(encrypted) {
     const { ciphertext, associated_data, nonce } = encrypted;
-    const encryptedBuffer = Buffer.from(ciphertext, 'base64');
+    const encryptedBuffer = Buffer.from(ciphertext, "base64");
     const authTag = encryptedBuffer.subarray(encryptedBuffer.length - 16);
-    const encryptedData = encryptedBuffer.subarray(0, encryptedBuffer.length - 16);
-    const decipher = crypto.createDecipheriv('aes-256-gcm', this.secretKey, nonce);
+    const encryptedData = encryptedBuffer.subarray(
+      0,
+      encryptedBuffer.length - 16
+    );
+    const decipher = crypto.createDecipheriv(
+      "aes-256-gcm",
+      this.secretKey,
+      nonce
+    );
     decipher.setAuthTag(authTag);
     decipher.setAAD(Buffer.from(associated_data));
-    const decrypted = Buffer.concat([decipher.update(encryptedData), decipher.final()]);
-    const decryptedString = decrypted.toString('utf8');
+    const decrypted = Buffer.concat([
+      decipher.update(encryptedData),
+      decipher.final(),
+    ]);
+    const decryptedString = decrypted.toString("utf8");
     return decryptedString;
   }
   async queryOrder(params) {
     const { out_trade_no } = params;
     const url = `/v3/pay/transactions/out-trade-no/${out_trade_no}?mchid=${this.mchid}`;
-    return await this.request('GET', url);
+    return await this.request("GET", url);
   }
   async closeOrder(params) {
     const { out_trade_no } = params;
     const url = `/v3/pay/transactions/out-trade-no/${out_trade_no}/close`;
-    await this.request('POST', url, { mchid: this.mchid });
+    await this.request("POST", url, { mchid: this.mchid });
+  }
+
+  async combineJsapiPayment(params) {
+    const _params = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    const url = `/v3/combine-transactions/jsapi`;
+    await this.request("POST", url, _params);
   }
 }
 module.exports = WechatPay;
