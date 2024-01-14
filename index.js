@@ -94,5 +94,12 @@ class WechatPay {
     const url = `/v3/combine-transactions/h5`;
     return await this.request('POST', url, params);
   }
+
+  // 查询退款
+  async queryRefund(params) {
+    const { out_refund_no } = params;
+    const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
+    return await this.request('GET', url);
+  }
 }
 module.exports = WechatPay;
