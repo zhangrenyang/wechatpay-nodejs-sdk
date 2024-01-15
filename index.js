@@ -121,6 +121,15 @@ class WechatPay {
     const url = `/v3/pay/transactions/out-trade-no/${out_trade_no}/close`;
     await this.request("POST", url, { mchid: this.mchid });
   }
+  async combineJsapiPayment(params) {
+    const _params = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    const url = `/v3/combine-transactions/jsapi`;
+    await this.request("POST", url, _params);
+  }
   async combineH5Payment(params) {
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
@@ -141,7 +150,6 @@ class WechatPay {
     return await this.request('GET', url);
   }
 
-  // 查询退款
   async queryRefund(params) {
     const { out_refund_no } = params;
     const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
