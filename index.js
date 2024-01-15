@@ -20,13 +20,19 @@ class WechatPay {
     this.authType = authType || DEFAULT_AUTH_TYPE;
     this.serial_no = getSerialNo(this.publicKey);
   }
-  async request(method, url, body = {}) {
+  getHeaders(extraHeaders = {}) {
     const nonce_str = Math.random().toString(36).substring(2, 17);
     const timestamp = Math.floor(Date.now() / 1000).toString();
     const signature = this.sign(method, url, nonce_str, timestamp, body);
+
     const headers = {
       Authorization: `${this.authType} mchid="${this.mchid}",nonce_str="${nonce_str}",timestamp="${timestamp}",serial_no="${this.serial_no}",signature="${signature}"`,
+      ...extraHeaders,
     };
+    return headers;
+  }
+  async request(method, url, body = {}, extraHeaders = {}) {
+    const headers = this.getHeaders(extraHeaders);
     const responseData = await weixinPayAPI.request({
       method,
       url,
@@ -44,6 +50,15 @@ class WechatPay {
   }
   async nativePayment(params) {
     const url = "/v3/pay/transactions/native";
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
+  async h5Payment(params) {
+    const url = "/v3/pay/transactions/h5";
     const requestParams = {
       appid: this.appid,
       mchid: this.mchid,
@@ -106,7 +121,6 @@ class WechatPay {
     const url = `/v3/pay/transactions/out-trade-no/${out_trade_no}/close`;
     await this.request("POST", url, { mchid: this.mchid });
   }
-
   async combineJsapiPayment(params) {
     const _params = {
       combine_appid: this.appid,
@@ -115,6 +129,31 @@ class WechatPay {
     };
     const url = `/v3/combine-transactions/jsapi`;
     await this.request("POST", url, _params);
+  }
+  async combineH5Payment(params) {
+    const url = `/v3/combine-transactions/h5`;
+    return await this.request("POST", url, params);
+  }
+
+  async transferToWallet(params) {
+    const url = `/v3/transfer/batches`;
+    const serial_no = params?.wx_serial_no;
+    delete params.wx_serial_no;
+    return await this.request("POST", url, params, {
+      "Wechatpay-Serial": serial_no || this.serial_no,
+    });
+  }
+
+  async requestFundFlowBill(params) {
+    const { bill_date } = params;
+    const url = `/v3/bill/fundflowbill?bill_date=${bill_date}`;
+    return await this.request('GET', url);
+  }
+
+  async queryRefund(params) {
+    const { out_refund_no } = params;
+    const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
+    return await this.request("GET", url);
   }
 }
 module.exports = WechatPay;
