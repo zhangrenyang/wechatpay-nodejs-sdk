@@ -20,7 +20,7 @@ class WechatPay {
     this.authType = authType || DEFAULT_AUTH_TYPE;
     this.serial_no = getSerialNo(this.publicKey);
   }
-  getHeaders(extraHeaders = {}){
+  getHeaders(extraHeaders = {}) {
     const nonce_str = Math.random().toString(36).substring(2, 17);
     const timestamp = Math.floor(Date.now() / 1000).toString();
     const signature = this.sign(method, url, nonce_str, timestamp, body);
@@ -31,7 +31,7 @@ class WechatPay {
     };
     return headers
   }
-  async request(method, url, body = {}, extraHeaders={}) {
+  async request(method, url, body = {}, extraHeaders = {}) {
     const headers = this.getHeaders(extraHeaders);
     const responseData = await weixinPayAPI.request({ method, url, data: body, headers });
     return responseData.data;
@@ -109,17 +109,34 @@ class WechatPay {
     const url = `/v3/combine-transactions/h5`;
     return await this.request('POST', url, params);
   }
-  async transferToWallet(params){
+  async transferToWallet(params) {
     const url = `/v3/transfer/batches`;
     const serial_no = params?.wx_serial_no;
     delete params.wx_serial_no;
 
-    return await this.request('POST', url, params, {'Wechatpay-Serial': serial_no || this.serial_no});
-
-  async requestFundFlowBill(params){
+    return await this.request('POST', url, params, { 'Wechatpay-Serial': serial_no || this.serial_no });
+  }
+  async requestFundFlowBill(params) {
     const { bill_date } = params;
     const url = `/v3/bill/fundflowbill?bill_date=${billDate}`;
     return await this.request('GET', url);
   }
+
+  async queryRefund(params) {
+    const { out_refund_no } = params;
+    const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
+    return await this.request("GET", url);
+  }
+
+  async combineAppPayment(params) {
+    const url = "/v3/combine-transactions/app";
+    const requestParams = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
+
 }
 module.exports = WechatPay;
