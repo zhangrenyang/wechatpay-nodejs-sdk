@@ -7,7 +7,7 @@
 | [JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml) | `jsapiPayment` | [MyNewGH](https://github.com/MyNewGH) | [ ] |
 | [合单H5支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_2.shtml) | `combineH5Payment` | [zzs](https://github.com/zhangzs000) | [√ ] | 
 | [合单Native支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_5.shtml) | `combineNativePayment` | [水镜](https://github.com/2119855865/) | [ ] |
-| [合单App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_1.shtml) | `combineAppPayment` | [阿立](https://github.com/Michael-py001) | [ ] |
+| [合单App支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_1.shtml) | `combineAppPayment` | [阿立](https://github.com/Michael-py001) | [√] |
 | [合单JSAPI支付 或 小程序支付](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter5_1_3.shtml) | `combineJsapiPayment` | [jaylan](https://github.com/han6054) | [ ] |
 
 ## 订单管理
