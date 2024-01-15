@@ -137,8 +137,8 @@ class WechatPay {
 
   async requestFundFlowBill(params) {
     const { bill_date } = params;
-    const url = `/v3/bill/fundflowbill?bill_date=${billDate}`;
-    return await this.request("GET", url);
+    const url = `/v3/bill/fundflowbill?bill_date=${bill_date}`;
+    return await this.request('GET', url);
   }
 
   // 查询退款
