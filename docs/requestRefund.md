@@ -1,3 +1,4 @@
+```js
 /**
  * refunds
  * @param {Object} refundsParams
@@ -14,3 +15,4 @@ async requestRefund(refundsParams = {}){
     const url = `/v3/refund/domestic/refunds`;
     return await this.request('POST', url, { ...refundsParams });
 }
+```
