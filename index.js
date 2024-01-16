@@ -156,7 +156,7 @@ class WechatPay {
     return await this.request("GET", url);
   }
 
-  async refundsApply(refundsParams = {}){
+  async requestRefund(refundsParams = {}){
       const url = `/v3/refund/domestic/refunds`;
       return await this.request('POST', url, { ...refundsParams });
   }
