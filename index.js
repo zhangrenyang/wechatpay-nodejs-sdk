@@ -134,7 +134,6 @@ class WechatPay {
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
   }
-
   async transferToWallet(params) {
     const url = `/v3/transfer/batches`;
     const serial_no = params?.wx_serial_no;
@@ -155,7 +154,15 @@ class WechatPay {
     const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
     return await this.request("GET", url);
   }
-
+  async combineAppPayment(params) {
+    const url = "/v3/combine-transactions/app";
+    const requestParams = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
   async requestRefund(refundsParams = {}){
       const url = `/v3/refund/domestic/refunds`;
       return await this.request('POST', url, { ...refundsParams });
