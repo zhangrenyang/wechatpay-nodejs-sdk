@@ -154,7 +154,6 @@ class WechatPay {
     const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
     return await this.request("GET", url);
   }
-
   async combineAppPayment(params) {
     const url = "/v3/combine-transactions/app";
     const requestParams = {
@@ -164,6 +163,27 @@ class WechatPay {
     };
     return await this.request("POST", url, requestParams);
   }
-
+  async requestRefund(refundsParams = {}){
+      const url = `/v3/refund/domestic/refunds`;
+      return await this.request('POST', url, { ...refundsParams });
+  /**
+   * 申请交易账单
+   */
+  async requestTradeBill(params) {
+    let url = `/v3/bill/tradebill`
+    const paramsToUrl = (url, params) => {
+      let queryString = '';
+      for (let key in params) {
+        if (queryString !== '') {
+          queryString += '&'; // 如果已经有查询参数了，则需要添加'&'分隔符
+        }
+        const value = encodeURIComponent(params[key]); // 对每个参数值进行编码
+        queryString += `${key}=${value}`;
+      }
+      return url + '?' + queryString;
+    }
+    url = paramsToUrl(url, params)
+    return await this.request('GET', url)
+  }
 }
 module.exports = WechatPay;
