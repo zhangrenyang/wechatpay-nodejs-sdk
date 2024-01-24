@@ -155,7 +155,7 @@ class WechatPay {
   async requestFundFlowBill(params) {
     const { bill_date } = params;
     const url = `/v3/bill/fundflowbill?bill_date=${bill_date}`;
-    return await this.request('GET', url);
+    return await this.request("GET", url);
   }
 
   async queryRefund(params) {
@@ -180,20 +180,35 @@ class WechatPay {
    * 申请交易账单
    */
   async requestTradeBill(params) {
-    let url = `/v3/bill/tradebill`
+    let url = `/v3/bill/tradebill`;
     const paramsToUrl = (url, params) => {
-      let queryString = '';
+      let queryString = "";
       for (let key in params) {
-        if (queryString !== '') {
-          queryString += '&'; // 如果已经有查询参数了，则需要添加'&'分隔符
+        if (queryString !== "") {
+          queryString += "&"; // 如果已经有查询参数了，则需要添加'&'分隔符
         }
         const value = encodeURIComponent(params[key]); // 对每个参数值进行编码
         queryString += `${key}=${value}`;
       }
-      return url + '?' + queryString;
+      return url + "?" + queryString;
+    };
+    url = paramsToUrl(url, params);
+    return await this.request("GET", url);
+  }
+  async queryOrderByCombine(params) {
+    const { combine_out_trade_no } = params;
+    const url = `v3/combine-transactions/out-trade-no/${combine_out_trade_no}`;
+    return await this.request("GET", url);
+  }
+
+  async appPayment(params) {
+    const url = '/v3/pay/transactions/app'
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params
     }
-    url = paramsToUrl(url, params)
-    return await this.request('GET', url)
+    return await this.request("POST", url, requestParams)
   }
 }
 module.exports = WechatPay;
