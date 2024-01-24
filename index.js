@@ -166,6 +166,7 @@ class WechatPay {
   async requestRefund(refundsParams = {}){
       const url = `/v3/refund/domestic/refunds`;
       return await this.request('POST', url, { ...refundsParams });
+  }
   /**
    * 申请交易账单
    */
@@ -184,6 +185,16 @@ class WechatPay {
     }
     url = paramsToUrl(url, params)
     return await this.request('GET', url)
+  }
+
+  async appPayment(params) {
+    const url = '/v3/pay/transactions/app'
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params
+    }
+    return await this.request("POST", url, requestParams)
   }
 }
 module.exports = WechatPay;
