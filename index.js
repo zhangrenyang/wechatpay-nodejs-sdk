@@ -130,9 +130,18 @@ class WechatPay {
     const url = `/v3/combine-transactions/jsapi`;
     await this.request("POST", url, _params);
   }
-  async combineH5Payment(params) {
+  async combineH5Payment(params) { 
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
+  }
+  async combineNativePayment(params) {
+    const _params = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    const url = `/v3/combine-transactions/native`;
+    await this.request("POST", url, _params);
   }
   async transferToWallet(params) {
     const url = `/v3/transfer/batches`;
@@ -163,9 +172,9 @@ class WechatPay {
     };
     return await this.request("POST", url, requestParams);
   }
-  async requestRefund(refundsParams = {}) {
-    const url = `/v3/refund/domestic/refunds`;
-    return await this.request("POST", url, { ...refundsParams });
+  async requestRefund(refundsParams = {}){
+      const url = `/v3/refund/domestic/refunds`;
+      return await this.request('POST', url, { ...refundsParams });
   }
   /**
    * 申请交易账单
