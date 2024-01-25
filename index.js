@@ -134,7 +134,15 @@ class WechatPay {
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
   }
-
+  async combineNativePayment(params) {
+    const _params = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    const url = `/v3/combine-transactions/native`;
+    await this.request("POST", url, _params);
+  }
   async transferToWallet(params) {
     const url = `/v3/transfer/batches`;
     const serial_no = params?.wx_serial_no;
@@ -155,11 +163,60 @@ class WechatPay {
     const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
     return await this.request("GET", url);
   }
+  async combineAppPayment(params) {
+    const url = "/v3/combine-transactions/app";
+    const requestParams = {
+      combine_appid: this.appid,
+      combine_mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
+  async requestRefund(refundsParams = {}) {
+    const url = `/v3/refund/domestic/refunds`;
+    return await this.request("POST", url, { ...refundsParams });
+  }
+  /**
+   * 申请交易账单
+   */
+  async requestTradeBill(params) {
+    let url = `/v3/bill/tradebill`;
+    const paramsToUrl = (url, params) => {
+      let queryString = "";
+      for (let key in params) {
+        if (queryString !== "") {
+          queryString += "&"; // 如果已经有查询参数了，则需要添加'&'分隔符
+        }
+        const value = encodeURIComponent(params[key]); // 对每个参数值进行编码
+        queryString += `${key}=${value}`;
+      }
+      return url + "?" + queryString;
+    };
+    url = paramsToUrl(url, params);
+    return await this.request("GET", url);
+  }
+  async queryOrderByCombine(params) {
+    const { combine_out_trade_no } = params;
+    const url = `v3/combine-transactions/out-trade-no/${combine_out_trade_no}`;
+    return await this.request("GET", url);
+  }
+
+  async appPayment(params) {
+    const url = "/v3/pay/transactions/app";
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
 
   async downloadBillingStatement(params) {
     const { token } = params;
     const url = `/v3/billdownload/file?token=${token}`;
-    return await this.request("GET", url);
+    const { download_url } = await this.request("GET", url);
+    const signatureUrl = this.sign("GET", download_url);
+    return await this.request("GET", signatureUrl);
   }
 }
 module.exports = WechatPay;

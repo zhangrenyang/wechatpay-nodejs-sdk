@@ -1,4 +1,4 @@
-```
+```js
 const wechatPay = new WechatPay({
   appid: WECHAT_APP_ID, //服务器ID
   mchid: WECHAT_MCH_ID, //商务ID
@@ -10,7 +10,7 @@ const wechatPay = new WechatPay({
 
 合单JSAPI支付
 
-```
+```js
  const params = {
     combine_out_trade_no: '主订单号',
     sub_orders: [
@@ -28,6 +28,6 @@ const wechatPay = new WechatPay({
     notify_url: '回调url',
   };
 ```
-```
+```js
  await wechatPay.combineJsapiPayment(params)
 ```
