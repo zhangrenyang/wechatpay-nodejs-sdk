@@ -147,12 +147,18 @@ class WechatPay {
   async requestFundFlowBill(params) {
     const { bill_date } = params;
     const url = `/v3/bill/fundflowbill?bill_date=${bill_date}`;
-    return await this.request('GET', url);
+    return await this.request("GET", url);
   }
 
   async queryRefund(params) {
     const { out_refund_no } = params;
     const url = `/v3/refund/domestic/refunds/${out_refund_no}`;
+    return await this.request("GET", url);
+  }
+
+  async downloadBillingStatement(params) {
+    const { token } = params;
+    const url = `/v3/billdownload/file?token=${token}`;
     return await this.request("GET", url);
   }
 }
