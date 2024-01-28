@@ -211,11 +211,8 @@ class WechatPay {
     return await this.request("POST", url, requestParams);
   }
 
-  async downloadBillingStatement(params) {
-    const { token } = params;
-    const url = `/v3/billdownload/file?token=${token}`;
-    const { download_url } = await this.request("GET", url);
-    const signatureUrl = this.sign("GET", download_url);
+  async downloadBillingStatement(url) {
+    const signatureUrl = this.sign(url);
     return await this.request("GET", signatureUrl);
   }
 }
