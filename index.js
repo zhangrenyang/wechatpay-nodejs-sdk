@@ -201,6 +201,18 @@ class WechatPay {
     return await this.request("GET", url);
   }
 
+  async closeCombinedOrder(params) {
+    const { combine_out_trade_no, combine_appid, sub_orders } = params;
+    if (!combine_out_trade_no) throw new Error('请传入参合单商户订单号：combine_out_trade_no')
+    if (!combine_appid) throw new Error('请传入参合单商户appid：combine_appid')
+    if (!sub_orders) throw new Error('请传入子订单：sub_orders')
+    const url = `v3/combine-transactions/out-trade-no/${combine_out_trade_no}/close`;
+    return await this.request("POST", url, {
+      combine_appid,
+      sub_orders,
+    });
+  }
+
   async appPayment(params) {
     const url = '/v3/pay/transactions/app'
     const requestParams = {
