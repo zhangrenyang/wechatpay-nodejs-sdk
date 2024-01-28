@@ -66,6 +66,17 @@ class WechatPay {
     };
     return await this.request("POST", url, requestParams);
   }
+
+  async jsapiPayment(params) {
+    const url = "/v3/pay/transactions/jsapi";
+    const requestParams = {
+      appid: this.appid,
+      mchid: this.mchid,
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
+
   async fetchWechatPayPublicKey(serial) {
     const publicKey = CACHED_CERTIFICATES[serial];
     if (publicKey) {
@@ -130,7 +141,7 @@ class WechatPay {
     const url = `/v3/combine-transactions/jsapi`;
     await this.request("POST", url, _params);
   }
-  async combineH5Payment(params) { 
+  async combineH5Payment(params) {
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
   }
