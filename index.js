@@ -130,7 +130,7 @@ class WechatPay {
     const url = `/v3/combine-transactions/jsapi`;
     await this.request("POST", url, _params);
   }
-  async combineH5Payment(params) { 
+  async combineH5Payment(params) {
     const url = `/v3/combine-transactions/h5`;
     return await this.request("POST", url, params);
   }
@@ -172,9 +172,9 @@ class WechatPay {
     };
     return await this.request("POST", url, requestParams);
   }
-  async requestRefund(refundsParams = {}){
-      const url = `/v3/refund/domestic/refunds`;
-      return await this.request('POST', url, { ...refundsParams });
+  async requestRefund(refundsParams = {}) {
+    const url = `/v3/refund/domestic/refunds`;
+    return await this.request("POST", url, { ...refundsParams });
   }
   /**
    * 申请交易账单
@@ -202,13 +202,18 @@ class WechatPay {
   }
 
   async appPayment(params) {
-    const url = '/v3/pay/transactions/app'
+    const url = "/v3/pay/transactions/app";
     const requestParams = {
       appid: this.appid,
       mchid: this.mchid,
-      ...params
-    }
-    return await this.request("POST", url, requestParams)
+      ...params,
+    };
+    return await this.request("POST", url, requestParams);
+  }
+
+  async downloadBillingStatement(url) {
+    const signatureUrl = this.sign(url);
+    return await this.request("GET", signatureUrl);
   }
 }
 module.exports = WechatPay;
